@@ -76,8 +76,9 @@ model User {
   emailVerified DateTime?
   image         String?
 
-  // Host public profile
-  slug     String @unique // /[slug]/[eventTypeSlug]
+  // Host public profile — slug gets a cuid() default so OAuth creation never fails;
+  // the host can rename it from their settings page.
+  slug     String @unique @default(cuid())
   timezone String @default("Europe/Warsaw")
 
   // Booking behaviour
